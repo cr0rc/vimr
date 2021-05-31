@@ -42,7 +42,7 @@ def call_open(action, query_params, args):
     if args.dry_run:
         print("/usr/bin/open {0}".format(url))
     else:
-        subprocess.call(["/usr/bin/open", url])
+        subprocess.call(["/usr/bin/open", "-n", url])
 
 
 def abspath(path):
