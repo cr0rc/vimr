@@ -10,6 +10,7 @@ import PureLayout
 import RxSwift
 import Tabs
 import Workspace
+import SwiftTerm
 
 class MainWindow: NSObject,
   UiComponent,
@@ -40,6 +41,8 @@ class MainWindow: NSObject,
   var fileBrowserContainer: WorkspaceTool?
   var buffersListContainer: WorkspaceTool?
   var htmlPreviewContainer: WorkspaceTool?
+  var termianlContainer: WorkspaceTool?
+  
 
   var theme = Theme.default
 
@@ -134,6 +137,41 @@ class MainWindow: NSObject,
       tools[.fileBrowser] = self.fileBrowserContainer
     }
 
+    if state.activeTools[.terminal] == true {
+      self.terminal = LocalProcessTerminalView(frame: state.frame)
+      let terminalConfig = WorkspaceTool.Config(
+        title: "Terminal",
+        view: self.terminal!
+      )
+      self.terminal?.feed(text: "Welcome to SwiftTerm")
+
+      var shell = "/bin/bash"
+      
+      let bufsize = sysconf(_SC_GETPW_R_SIZE_MAX)
+      if bufsize != -1 {
+
+        let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: bufsize)
+        defer {
+            buffer.deallocate()
+        }
+        var pwd = passwd()
+        var result: UnsafeMutablePointer<passwd>? = UnsafeMutablePointer<passwd>.allocate(capacity: 1)
+        
+        if getpwuid_r(getuid(), &pwd, buffer, bufsize, &result) != 0 {
+            shell = "/bin/bash"
+        }
+        shell = String (cString: pwd.pw_shell)
+      }
+    
+      let shellIdiom = "-" + NSString(string: shell).lastPathComponent
+      
+      FileManager.default.changeCurrentDirectoryPath (self.cliPipePath ?? FileManager.default.homeDirectoryForCurrentUser.path)
+      self.terminal?.startProcess (executable: shell, execName: shellIdiom)
+      self.termianlContainer = WorkspaceTool(terminalConfig)
+      self.termianlContainer!.dimension = state.tools[.terminal]?.dimension ?? 500
+      tools[.terminal] = self.termianlContainer
+    }
+    
     if state.activeTools[.buffersList] == true {
       self.buffersList = BuffersList(
         source: source, emitter: emitter, state: state
@@ -253,6 +291,7 @@ class MainWindow: NSObject,
   private var htmlPreview: HtmlPreviewTool?
   private var fileBrowser: FileBrowser?
   private var buffersList: BuffersList?
+  private var terminal: LocalProcessTerminalView?
 
   private var usesTheme = true
   private var lastThemeMark = Token()

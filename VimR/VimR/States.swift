@@ -247,6 +247,7 @@ extension MainWindow {
       .buffersList: WorkspaceToolState(location: .left, dimension: 200, open: false),
       .preview: WorkspaceToolState(location: .right, dimension: 250, open: false),
       .htmlPreview: WorkspaceToolState(location: .right, dimension: 500, open: false),
+      .terminal: WorkspaceToolState(location: .right, dimension: 500, open: false),
     ]
 
     static let orderedDefault: [MainWindow.Tools] = [.fileBrowser, .buffersList, .preview,
@@ -259,6 +260,7 @@ extension MainWindow {
       Tools.buffersList: true,
       Tools.preview: true,
       Tools.htmlPreview: true,
+      Tools.terminal: true,
     ]
 
     var frame = CGRect(x: 100, y: 100, width: 600, height: 400)

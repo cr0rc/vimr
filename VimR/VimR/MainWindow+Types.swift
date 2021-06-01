@@ -49,6 +49,7 @@ extension MainWindow {
     case bufferList
     case markdownPreview
     case htmlPreview
+    case terminal
   }
 
   enum Tools: String, Codable {
@@ -58,12 +59,14 @@ extension MainWindow {
         Tools.buffersList,
         Tools.preview,
         Tools.htmlPreview,
+        Tools.terminal,
       ]
     )
 
     case fileBrowser = "com.qvacua.vimr.tools.file-browser"
     case buffersList = "com.qvacua.vimr.tools.opened-files-list"
     case preview = "com.qvacua.vimr.tools.preview"
+    case terminal = "com.qvacua.vimr.tools.terminal"
     case htmlPreview = "com.qvacua.vimr.tools.html-preview"
   }
 

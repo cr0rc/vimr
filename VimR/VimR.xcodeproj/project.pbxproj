@@ -168,6 +168,7 @@
 		4BF70EE123D1B5B3009E51E9 /* FileScanBaton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70EDF23D1B5B3009E51E9 /* FileScanBaton.m */; };
 		4BF70EE523D1B5EC009E51E9 /* FuzzySearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70EE323D1B5EC009E51E9 /* FuzzySearchService.swift */; };
 		4BF70EEA23D1B5FF009E51E9 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF70EE923D1B5FF009E51E9 /* CoreDataStack.swift */; };
+		CB0A02932665FE050036CD9F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CB0A02922665FE050036CD9F /* SwiftTerm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -364,6 +365,8 @@
 				4B0B362A2595236000B06899 /* ShortcutRecorder in Frameworks */,
 				4B0B36242595236000B06899 /* EonilFSEvents in Frameworks */,
 				4B6C6AE5267C71ED00F77527 /* RxRelay in Frameworks */,
+				4B0B362B2595236000B06899 /* RxPack in Frameworks */,
+				CB0A02932665FE050036CD9F /* SwiftTerm in Frameworks */,
 				4B0B36212595236000B06899 /* PureLayout in Frameworks */,
 				4B6C6AE3267C71ED00F77527 /* RxCocoa in Frameworks */,
 				4B0B362E2595236000B06899 /* Workspace in Frameworks */,
@@ -785,6 +788,7 @@
 				4B6C6AE2267C71ED00F77527 /* RxCocoa */,
 				4B6C6AE4267C71ED00F77527 /* RxRelay */,
 				4B6C6AE6267C71ED00F77527 /* RxSwift */,
+				CB0A02922665FE050036CD9F /* SwiftTerm */,
 			);
 			productName = VimR;
 			productReference = 4BEBA5051CFF374B00673FDF /* VimR-dev.app */;
@@ -856,6 +860,7 @@
 				4B69B31924EDBAF000B1E5EB /* XCRemoteSwiftPackageReference "material-icons" */,
 				4BD67CD824EE45CA00147C51 /* XCRemoteSwiftPackageReference "Nimble" */,
 				4BA284B0256471ED00CFDF7F /* XCRemoteSwiftPackageReference "Sparkle" */,
+				CB0A02912665FE050036CD9F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 			);
 			productRefGroup = 4BEBA5061CFF374B00673FDF /* Products */;
 			projectDirPath = "";
@@ -1171,7 +1176,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
@@ -1227,7 +1232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_DISABLE_SAFETY_CHECKS = YES;
@@ -1252,6 +1257,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_LDFLAGS = (
 					"$(PROJECT_DIR)/../third-party/vimr-deps/lib/liblzma.a",
 					"$(PROJECT_DIR)/../third-party/vimr-deps/lib/libpcre.a",
@@ -1280,6 +1286,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_LDFLAGS = (
 					"$(PROJECT_DIR)/../third-party/vimr-deps/lib/liblzma.a",
 					"$(PROJECT_DIR)/../third-party/vimr-deps/lib/libpcre.a",
@@ -1456,6 +1463,14 @@
 				minimumVersion = 9.2.0;
 			};
 		};
+		CB0A02912665FE050036CD9F /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1540,6 +1555,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4B9BC41F24EB2E45000209B5 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxTest;
+		};
+		CB0A02922665FE050036CD9F /* SwiftTerm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB0A02912665FE050036CD9F /* XCRemoteSwiftPackageReference "SwiftTerm" */;
+			productName = SwiftTerm;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
