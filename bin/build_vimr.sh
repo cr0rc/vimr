@@ -3,6 +3,7 @@ set -Eeuo pipefail
 
 readonly code_sign=${code_sign:?"true or false"}
 readonly use_carthage_cache=${use_carthage_cache:?"true or false"}
+readonly local_nvimserver=${local_nvimserver:-"false"}
 
 main () {
   pushd "$(dirname "${BASH_SOURCE[0]}")/.." >/dev/null
@@ -18,7 +19,10 @@ main () {
     carthage update --platform macos
   fi
 
-  ./bin/download_nvimserver.sh
+  if [[ "${local_nvimserver}" == false ]]; then
+    echo "### Downloading NVimServer"
+    ./bin/download_nvimserver.sh
+  fi
 
   echo "### Xcodebuilding"
   rm -rf ${build_path}
